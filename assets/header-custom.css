@@ -1,0 +1,281 @@
+/* ==========================================================================
+   Header Custom Overrides — IQBAR brand styling
+   Scoped to .header-section and header-group context to avoid leaking
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   1. Container padding — 40px desktop, 20px mobile
+   --------------------------------------------------------------------------- */
+.header-section .header__row {
+  --section-padding-inline: 40px;
+}
+
+@media screen and (max-width: 749px) {
+  .header-section .header__row {
+    --section-padding-inline: 20px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   2. Header block padding — 21px desktop, 20px mobile for ~79px / ~70px height
+   --------------------------------------------------------------------------- */
+.header-section .header__columns {
+  --padding-block-start: 21px;
+  --padding-block-end: 21px;
+}
+
+@media screen and (max-width: 749px) {
+  .header-section .header__columns {
+    --padding-block-start: 20px;
+    --padding-block-end: 20px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   3. First nav link styled as blue CTA button (#488AFF)
+   --------------------------------------------------------------------------- */
+.header-section .menu-list__list-item:first-child .menu-list__link {
+  background: rgb(72, 138, 255);
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  text-decoration: none;
+  background-size: 100% 200%, 100% 100%;
+  background-position: 100% -100%, 100% 100%;
+  background-repeat: no-repeat, no-repeat;
+  transition: background-position 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.header-section .menu-list__list-item:first-child .menu-list__link-title {
+  background: rgb(72, 138, 255);
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  padding-inline: 12px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  letter-spacing: -0.18px;
+  line-height: 48px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.header-section .menu-list__list-item:first-child .menu-list__link:hover .menu-list__link-title,
+.header-section .menu-list__list-item:first-child .menu-list__link:focus-visible .menu-list__link-title {
+  opacity: 0.9;
+}
+
+/* Remove default hover underline from first (CTA) link */
+.header-section .menu-list__list-item:first-child .menu-list__link::after,
+.header-section .menu-list__list-item:first-child .menu-list__link-title::after {
+  display: none;
+}
+
+/* ---------------------------------------------------------------------------
+   4. Nav link gap — ~32px effective spacing between items
+   --------------------------------------------------------------------------- */
+.header-section .menu-list .overflow-menu::part(list) {
+  gap: 0;
+}
+
+.header-section .menu-list__list-item {
+  margin-inline-end: 32px;
+}
+
+.header-section .menu-list__list-item:last-child {
+  margin-inline-end: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   5. Menu link hover underline — animated ::after pseudo element
+   --------------------------------------------------------------------------- */
+.header-section .menu-list__list-item:not(:first-child) .menu-list__link-title {
+  position: relative;
+}
+
+.header-section .menu-list__list-item:not(:first-child) .menu-list__link-title::after {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-end: -2px;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+}
+
+.header-section .menu-list__list-item:not(:first-child) .menu-list__link:hover .menu-list__link-title::after,
+.header-section .menu-list__list-item:not(:first-child) .menu-list__link:focus-visible .menu-list__link-title::after {
+  transform: scaleX(1);
+}
+
+/* ---------------------------------------------------------------------------
+   6. Hide account icon on mobile (below 750px)
+   --------------------------------------------------------------------------- */
+@media screen and (max-width: 749px) {
+  .header-section .account-button {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   7. Cart badge — black bg, white text, circular
+   --------------------------------------------------------------------------- */
+.header-section .cart-bubble {
+  --cart-bubble-background: rgb(0, 0, 0);
+  --cart-bubble-text-color: rgb(255, 255, 255);
+}
+
+.header-section .cart-bubble__background {
+  background-color: rgb(0, 0, 0);
+}
+
+.header-section .cart-bubble__text {
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.header-section .cart-bubble[data-maintain-ratio] {
+  min-width: 21px;
+  height: 21px;
+  border-radius: 21px;
+}
+
+/* ---------------------------------------------------------------------------
+   8. Mobile drawer CTA buttons (top-level links)
+   --------------------------------------------------------------------------- */
+
+/* Primary CTA — "Shop All" blue background */
+.header-section .menu-drawer__menu > .menu-drawer__list-item:first-child .menu-drawer__menu-item--mainlist {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-inline: 12px;
+  margin-block-start: 8px;
+  height: 48px;
+  background: rgb(72, 138, 255);
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  line-height: 21.6px;
+  border-bottom: none;
+}
+
+/* Secondary CTA — "Try a Sample Pack!" blue outline */
+.header-section .menu-drawer__menu > .menu-drawer__list-item:first-child + .menu-drawer__list-item .menu-drawer__menu-item--mainlist {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-inline: 12px;
+  margin-block-end: 8px;
+  height: 48px;
+  background: rgb(255, 255, 255);
+  color: rgb(72, 138, 255);
+  border: 2px solid rgb(72, 138, 255);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  line-height: 21.6px;
+}
+
+/* ---------------------------------------------------------------------------
+   9. Mobile drawer collection image grid
+   --------------------------------------------------------------------------- */
+.header-section .menu-drawer__featured-content-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.header-section .menu-drawer__featured-content-list-item {
+  flex-shrink: 0;
+}
+
+/* First collection image — full-width with 16:9 ratio */
+.header-section .menu-drawer__featured-content-list-item:first-child {
+  flex-basis: 100%;
+}
+
+.header-section .menu-drawer__featured-content-list-item:first-child img.resource-card__image {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Subsequent collection images — 2-column with square ratio */
+.header-section .menu-drawer__featured-content-list-item:not(:first-child) {
+  flex-basis: calc(50% - 5px);
+}
+
+.header-section .menu-drawer__featured-content-list-item:not(:first-child) img.resource-card__image {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Collection image heading text — centered */
+.header-section .menu-drawer__featured-content-list-item .resource-card__title {
+  text-align: center;
+  margin-block-start: 4px;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+/* ---------------------------------------------------------------------------
+   10. Mobile drawer regular links
+   --------------------------------------------------------------------------- */
+.header-section .menu-drawer__menu-item--mainlist {
+  padding-block: 21px;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  line-height: 21.6px;
+}
+
+.header-section .menu-drawer__list-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+/* ---------------------------------------------------------------------------
+   11. Mobile drawer accordion plus icon
+   --------------------------------------------------------------------------- */
+.header-section .menu-drawer__menu-item .animated-plus,
+.header-section .menu-drawer__menu-item .icon-plus {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   12. Mobile drawer footer
+   --------------------------------------------------------------------------- */
+.header-section .header-drawer .drawer__footer {
+  padding: 20px;
+  box-shadow: rgb(217, 217, 217) 0 1px 0 0 inset;
+}
+
+.header-section .header-drawer .drawer__footer .icon-text {
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+}
+
+.header-section .header-drawer .drawer__footer .icon-text svg {
+  margin-inline-end: 12px;
+}
+
+/* ---------------------------------------------------------------------------
+   13. Announcement bar link underline for SHOP NOW
+   --------------------------------------------------------------------------- */
+.shopify-section-group-header-group .announcement-bar a {
+  text-decoration: none;
+}
+
+.shopify-section-group-header-group .announcement-bar a:hover {
+  text-decoration: underline;
+}
